@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
     <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
-    <title>title</title>
+    <title>积分兑换</title>
     <link rel="stylesheet" type="text/css" href="../css/aui.css" />
     <link rel="stylesheet" type="text/css" href="../css/style.css"/>
     <link rel="stylesheet" type="text/css" href="../css/iconfont.css"/>
@@ -12,10 +12,10 @@
 <body>
   <div class="myui-jifen-box">
     <div class="myui-jifen-1">
-      <h1 id="sign"></h1>当前积分
+      <h2 id="sign"></h2>当前金币
     </div>
     <div class="myui-jifen-bt">
-      <div class="my-jien-btn aui-btn aui-btn-info aui-btn-block aui-btn-sm" tapmode onclick="openWin('share_win')">获取积分</div>
+      <div class="my-jien-btn aui-btn aui-btn-info aui-btn-block aui-btn-sm" tapmode onclick="openWin('share_win')">获取金币</div>
     </div>
     <div id="bili" class="myui-jifen-2">
 
@@ -32,7 +32,25 @@
         </div>
     </div>
     <div class="myui-jifen-bt">
-      <div class="my-jien-btn aui-btn aui-btn-info aui-btn-block aui-btn-sm" tapmode onclick="exchange()">确认兑换（天）</div>
+      <div class="my-jien-btn aui-btn aui-btn-info aui-btn-blockx aui-btn-sm" tapmode onclick="fasong()">兑换VIP(天)</div>
+    </div>
+
+    <div id="bili2" class="myui-jifen-2">
+
+    </div>
+    <div class="auixj" style="width:50%;" type="count" id="demo2">
+    		<!-- <div class="aui-bar-btn-item aui-font-size-20">
+    				<i class="aui-iconfont aui-icon-minus"></i>
+    		</div> -->
+    		<div class="auixj-quy">
+    		<input type="number" style="height: 1.8rem;font-size: 20px;" class="auinbr" id="count2" value="1" min="1">
+    		</div>
+    		<!-- <div class="aui-bar-btn-item aui-font-size-20">
+    				<i class="aui-iconfont aui-icon-plus"></i>
+    		</div> -->
+    </div>
+    <div class="myui-jifen-bt">
+    	<div class="my-jien-btn aui-btn aui-btn-info aui-btn-blockx aui-btn-sm" tapmode onclick="dhxj()">兑换现金</div>
     </div>
 
   </div>
@@ -43,7 +61,7 @@
 <script type="text/javascript" src="../script/auitab.js" ></script>
 <script type="text/javascript">
   var api_url = localStorage.getItem('api_url');
-
+           
   apiready = function(){
     api.parseTapmode();
     api.showProgress({
@@ -52,7 +70,7 @@
         modal: false
     });
     api.ajax({
-        url: api_url+'/login/login/sign.html',
+        url: 'http://s.6ayun.com/login/login/sign.html',
         method: 'get',
         data: {
             values: {
@@ -62,16 +80,24 @@
     },function(ret, err){
         if (ret) {
             var sign = $api.byId('sign');
-            sign.innerHTML = ret.msg['share'];
-
+            sign.innerHTML = ret.msg['jinbi'];
+						var daybl= ret.msg['daybili'];
+						var xjbl= ret.msg['xjbili'];
+						var bili = $api.byId('bili');
+            localStorage.setItem('user_jinb',ret.msg['jinbi']);
+						localStorage.setItem('user_jbdaybl',daybl);
+						localStorage.setItem('user_jbxjbl',xjbl);
+						bili.innerHTML = daybl+'金币可以兑换1天会员资格！';
+						bili2.innerHTML = xjbl+'金币可以兑换1元现金!';
+						api.hideProgress();
         } else {
           api.hideProgress();
-            alert('网络错误');
+            alert('网络错误11');
         }
     });
 
-    api.ajax({
-        url: api_url+'/login/login/share.html',
+    /* api.ajax({
+        url: 'http://s.6ayun.com/login/login/share.html',
         method: 'get',
         data: {
             values: {
@@ -81,22 +107,80 @@
     },function(ret, err){
         if (ret) {
           var bili = $api.byId('bili');
-          jifenbi = ret.sign;
-          bili.innerHTML = ret.sign+'积分可以兑换1天会员资格哦！';
+          
+          bili.innerHTML = '100金币可以兑换1天会员资格！';
+					bili2.innerHTML = '500金币可以兑换1元现金!';
           api.hideProgress();
-
         } else {
           api.hideProgress();
           alert('获取失败');
 
         }
-    });
+    }); */
   }
 
-  var jifenbi = '';
+ function fasong(){
+      var ajax = new XMLHttpRequest();
+      ajax.open('post','http://s.6ayun.com/appx/cesaj.php');
+      ajax.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+	       var daybilv =localStorage.getItem('user_jbdaybl');
+			 var bianl1 = document.querySelector('#sign');
+			 var bianl2 = document.querySelector('#count').value;
+			 var bianl3 = Number(bianl1.innerText)-(Number(bianl2)*daybilv);//兑换金币/积分比率!!!!
+			 var bianyu = Number(bianl3);
+			 if (bianyu<=0){
+			 	alert('金币不足，无法兑换')
+			 	return;
+		   }
+			 	 var shuji=Number(bianl2);
+			 	  sign.innerHTML = bianyu; 
+					var userid = localStorage.getItem('user_id');
+			 		var student = new Object(); 
+			 		student.id = userid; 
+			 		student.age = shuji; 
+			 		var json = JSON.stringify(student); 
+			 		ajax.send('json='+json);
+			 	ajax.onreadystatechange = function(){
+			 		if (ajax.readyState ==4&&ajax.status==200) {
+			 				console.log(ajax.responseText);
+							localStorage.setItem('user_jinb',bianyu);
+			 				alert('兑换成功！恭喜获得'+ajax.responseText+'天VIP')	
+			 		}
+			 	};
+    }
 
 
-  function exchange(){
+ function dhxj(){
+      var ajax = new XMLHttpRequest();
+      ajax.open('post','http://s.6ayun.com/appx/dhxj.php');
+      ajax.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+	     var xjbilv =localStorage.getItem('user_jbxjbl');
+			 var bianl1 = document.querySelector('#sign');
+			 var bianl2 = document.querySelector('#count2').value;
+			 var bianl3 = Number(bianl1.innerText)-(Number(bianl2)*xjbilv);//兑换金币/积分比率!!!!
+			 var bianyu = Number(bianl3);
+			 if (bianyu<=0){
+			 	alert('金币不足，无法兑换')
+			 	return;
+		   }
+			 	 var shuji=Number(bianl2);
+			 	  sign.innerHTML = bianyu;   
+					// localStorage.setItem('user_jinb',bianyu);
+					var userid = localStorage.getItem('user_id');
+			 		var student = new Object(); 
+			 		student.id = userid; 
+			 		student.age = shuji; 
+			 		var json = JSON.stringify(student); 
+			 		ajax.send('json='+json);
+			 	ajax.onreadystatechange = function(){
+			 		if (ajax.readyState ==4&&ajax.status==200) {
+			 				console.log(ajax.responseText);
+			 				alert('兑换成功！恭喜获得'+ajax.responseText+'元现金');
+			 		}
+			 	};
+    }
+/*
+  function exchange00(){
     var share = $api.val($api.byId('count'));
 
     api.ajax({
@@ -119,16 +203,16 @@
 
         } else {
           api.hideProgress();
-            alert( '网络错误' );
+            alert( '网络错误22' );
         }
     });
   }
-
+*/
 
   //重新获取到期时间
   function getTime(){
     api.ajax({
-        url: api_url+'/login/login/veifys.html',
+        url: 'http://s.6ayun.com/login/login/veifys.html',
         method: 'get',
         data: {
             values: {
@@ -152,7 +236,7 @@
           }
         } else {
           api.hideProgress();
-          alert('网络错误！');
+          alert('网络错误！33');
         }
     });
   }
@@ -186,8 +270,7 @@
     }
 
 
-
-  function openWin(name){
+   function openWin(name){
         var delay = 0;
         if(api.systemType != 'ios'){
             delay = 300;
@@ -200,6 +283,6 @@
             slidBackEnabled:true,
             vScrollBarEnabled:false
         });
-    }
+    } 
 </script>
 </html>

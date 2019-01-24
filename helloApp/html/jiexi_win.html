@@ -9,20 +9,24 @@
     <link rel="stylesheet" type="text/css" href="../css/iconfont.css"/>
 </head>
 <body>
-  <header class="aui-bar aui-bar-nav" id="aui-header" style="background:#720eee;font-size:16px">
-      <a class="aui-btn aui-pull-left"  tapmode onclick="closeWin() "style="color:#FFF">
-          <span class="aui-iconfont aui-icon-left" style="color:#FFF"> </span>返回
+  <header class="aui-bar aui-bar-nav" id="aui-header">
+      <a class="aui-btn aui-pull-left" tapmode onclick="closeWin()">
+          <span class="aui-iconfont aui-icon-left"></span>返回
       </a>
-      <a class="aui-btn aui-pull-left" tapmode onclick="closeWd()"style="color:#FFF" >
+      <a class="aui-btn aui-pull-left" tapmode onclick="closeWd()">
           关闭
       </a>
-      <div id="title" class="aui-title" style="color:#FFF">新版演示</div>
-      <a id="play" class="aui-btn aui-pull-right" style="color:#fff000 !important;font-weight:bold" tapmode onclick="huanxian()">
-           点此播放
+      <div id="title" class="aui-title">全网影吧</div>
+      <!-- <a id="play" class="aui-btn aui-pull-right" style="color:#ff5722 !important;font-weight:bold" tapmode onclick="huanxian()">
+          播放
+      </a> -->
+      <a id="play" class="aui-btn aui-pull-right" style="color:fuchsia; !important;font-weight:bold" tapmode onclick="jieXi()">
+          免VIP换线播放
       </a>
 
-
   </header>
+
+
 
 </body>
 <script type="text/javascript" src="../script/api.js" ></script>
@@ -43,6 +47,15 @@
       $api.fixStatusBar(header);
       var headerPos = $api.offset(header);
       var body_h = $api.offset($api.dom('body')).h;
+
+
+      //支付宝口令复制
+      var clipBoard = api.require('clipBoard');
+      clipBoard.set({
+          value: 'mCQc3P00kQ'
+      }, function(ret, err) {
+
+      });
 
 
       var user_id = localStorage.getItem('user_id');
@@ -83,10 +96,6 @@
                       msg: '请重新登陆',
                   });
                   return;
-
-
-
-
 
                 }
             } else {
@@ -135,7 +144,7 @@
 
                dataurl = ret.url;
                dataurl2 = dataurl;
-
+               //alert(dataurl2);
                var txurlc = dataurl2.split(":");
                var txurl = txurlc[1].slice(0,12);
                var ykurl = txurlc[1].slice(0,13);
@@ -164,11 +173,11 @@
              }
              if (txurl=='//m.v.qq.com') {
                var txdata = dataurl2;
-
+               //var txget = new winsx(dataurl2);
                var vid = getParam('vid');
                var txdata2 = dataurl2.split("?");
                var cid = txdata2[0].slice(-20,-5)
-
+               //alert(vid);
 
                if (vid.length == 11) {
                  dataurl2 = 'https://v.qq.com/x/cover/'+cid+'/'+vid+'.html';
@@ -199,8 +208,6 @@
              var bturl = dataurl2.split(":");
              var feurl = bturl[1];
 
-
-
              if (feurl.slice(0,18) == '//www.iqiyi.com/v_'||feurl.slice(0,19) == '//v.qq.com/x/cover/'||feurl.slice(0,17) == '//m.tv.sohu.com/v'||feurl.slice(0,23) == '//m.film.sohu.com/album'||feurl.slice(0,14) == '//m.mgtv.com/b'||feurl.slice(0,21) == '//www.youku.com/video'||feurl.slice(0,22) == '//www.le.com/ptv/vplay'||feurl.slice(0,30) == '//www.wasu.cn/wap/play/show/id'||feurl.slice(0,30) == '//www.wasu.cn/wap/Play/show/id'||feurl.slice(0,17) == '//m.pptv.com/show'||feurl.slice(0,60) == '//m.miguvideo.com/wap/resource/migu/miguH5/detail/detail.jsp') {
 
                if (!onoff) {
@@ -208,31 +215,35 @@
                }
 
 
-/*               var dialogBox = api.require('dialogBox');
-                dialogBox.discount({
-                    rect: {
-                        w: api.winWidth,
-                        h: api.winHeight
 
+               /* var dialogBox = api.require('dialogBox');
+               dialogBox.discount({
+               rect: {
+                  w: 300,
+                  h: 400
                     },
-                    styles: {
-                        bg: 'rgba(0,0,0,0.0)',
-                        image: {
-                            path: 'widget://image/tishi.png',
-                            marginB: 0
-                        }
-                    }
+               styles: {
+                    bg: '#FFF',
+                 image: {
+            path: 'widget://image/tiss.png',
+            marginB: 50
+                  },
+          cancel: {
+            icon: 'widget://image/cancel_btn.png',
+            w: 50,
+            h: 50,
+						marginB: 50
+                  }
+               }
                 }, function(ret) {
-                    //alert(JSON.stringify(ret));
-                    if (ret.eventType == 'image') {
-                      onoff = false;
-                        dialogBox.close({
-                            dialogName: 'discount'
-                        });
-                        huanxian();
-                    }
-                });
-*/
+    
+              if (ret.eventType == 'cancel') {
+        dialogBox.close({
+            dialogName: 'discount'
+                 });
+             }
+                   });
+ */
 
 
              }else {
@@ -246,14 +257,15 @@
               case 2:
                   break;
               case 3:
+
               var title = $api.byId('title');
-              title.innerHTML = ret.title;
-              break;
+              title.innerHTML = '全网影吧';
+                  break;
               case 4:
                   break;
               default:
               var title = $api.byId('title');
-              title.innerHTML = ret.title;
+              title.innerHTML = '全网影吧';
                   break;
           };
 
@@ -267,13 +279,11 @@
       //         x: 0,
       //         y: headerPos.h,
       //         w: api.winWidth,
-      //         h: 290
+      //         h: 300
       //     },
-
+      //
       //     pageParam:{id:api.pageParam.id}
       // });
-
-
 
       var dialogBox = api.require('dialogBox');
       dialogBox.taskPlan({
@@ -282,21 +292,21 @@
               h: 350
           },
           texts: {
-              mainTitle: '如何播放视频？',
-              subTitle: '找到你要观看的电影或者电视剧，打开播放页面，然后在播放页面点击右上角的【点击播放】即可。如果视频无法播放，请点击右上角的【更换线路】进行解决。',
+              mainTitle: 'VIP登陆成功',
+              subTitle: '您可以先选择视频后在播放页面点击APP右上角的播放按钮即可免费观看，如果播放失败请尝试切换线路或反馈',
               content: [{
-                  text: '步骤1.打开你要观看的视频页面'
+                  text: '步骤1.选择观看的视频后进入播放页面'
               }, {
-                  text: '步骤2.点击右上角的【点击播放】'
+                  text: '步骤2.在点击APP右上角【播放】按钮'
               }],
-              btnTitle: '点此关闭提示'
+              btnTitle: 'OK'
           },
           styles: {
               bg: '#fff',
               corner: 5,
               main: {
                   marginT: 10,
-                  color: '#FF3366',
+                  color: '#ff7600',
                   size: 16,
                   bold: true,
               },
@@ -306,20 +316,20 @@
                   size: 16,
               },
               content: [{
-                  bg: '#FF3366',
+                  bg: '#ffd249',
                   marginT: 10,
                   w: 280,
                   h: 30,
                   align: 'center',
-                  color: '#FFF',
+                  color: '#be690d',
                   size: 14
               }, {
-                  bg: '#FF3366',
+                  bg: '#be690d',
                   marginT: 10,
                   w: 280,
                   h: 30,
                   align: 'center',
-                  color: '#FFF',
+                  color: '#ffd249',
                   size: 14
               }],
               ok: {
@@ -328,7 +338,7 @@
                   w: 280,
                   h: 40,
                   bg: '#fff',
-                  color: '#FF3366',
+                  color: '#007FFF',
                   size: 15
               }
           }
@@ -443,7 +453,7 @@
 
     function jieXi(){
       api.actionSheet({
-          title: '新版演示VIP线路',
+          title: '全网影吧VIP线路',
           cancelTitle: '取消',
           buttons: ['VIP线路1', 'VIP线路2', 'VIP线路3', 'VIP线路4', 'VIP线路5']
       }, function(ret, err) {
@@ -470,7 +480,7 @@
 
 
     function huanxian(){
-
+      //alert(dataurl2);
       var user_id = localStorage.getItem('user_id');
       if(user_id<1){
         api.alert({
@@ -499,7 +509,38 @@
 
     function playVideo(){
       api.hideProgress();
-
+      // api.ajax({
+      //     url: 'http://api.icaijie.cn/',
+      //     method: 'get',
+      //     data: {
+      //         values: {
+      //             a: 'api',
+      //             apikey: '4f38a68f37a38267',
+      //             url: dataurl2
+      //         }
+      //     }
+      // },function(ret, err){
+      //     if (ret) {
+      //       api.hideProgress();
+      //       alert( JSON.stringify( ret ) );
+      //       var delay = 0;
+      //       if(api.systemType != 'ios'){
+      //           delay = 300;
+      //       }
+      //       api.openWin({
+      //           name: 'jiexi_play_win',
+      //           url: 'jiexi_play_win.html',
+      //           bounces:false,
+      //           delay: delay,
+      //           slidBackEnabled:true,
+      //           vScrollBarEnabled:false,
+      //           pageParam:{video:ret.result.files,url:dataurl2}
+      //       });
+      //     } else {
+      //       api.hideProgress();
+      //         alert( JSON.stringify( err ) );
+      //     }
+      // });
 
         var systemType = api.systemType;
         if (systemType == 'android') {
@@ -507,13 +548,13 @@
               name: 'play_win',
               url: './play_win.html',
               delay: 300,
-              pageParam:{url:'http://47.96.125.28/jiexi/index.php?url='+dataurl2},
+              pageParam:{url:jx_url1+dataurl2},
               bgColor: '#000000'
           });
         }else {
           var browser = api.require('webBrowser');
           browser.open({
-              url: 'http://47.96.125.28/jiexi/index.php?url='+dataurl2,
+              url: jx_url1+dataurl2,
               titleBar: {
                 visible: true
               }
@@ -531,20 +572,80 @@
 
     }
 
-    function closeWin(){
-      var browser = api.require('webBrowser');
-      browser.historyBack(
-        function(ret, err) {
-            if (!ret.status) {
-                api.closeWin();
-            }
-        }
-      );
+    function closeWd(){
+      var dialogBox = api.require('dialogBox');
+      dialogBox.raffle({
+          texts: {
+              subText: '播放是否异常？',
+              leftTitle: '是[反馈]',
+              rightTitle: '否[退出]'
+          },
+          styles: {
+              bg: '#fff',
+              w: 300,
+              icon: {
+                  marginT: 0,
+                  w: 300,
+                  h: 150,
+                  iconPath: 'widget://image/exitback.jpg'
+              },
+              main: {
+                  marginT: 0,
+                  color: '#636363',
+                  size: 13
+              },
+              sub: {
+                  marginT: 0,
+                  color: '#999999',
+                  size: 14
+              },
+              left: {
+                  marginB: 7,
+                  marginL: 18,
+                  w: 130,
+                  h: 35,
+                  corner: 2,
+                  bg: '#fff',
+                  color: '#007FFF',
+                  size: 15
+              },
+              right: {
+                  marginB: 7,
+                  marginL: 18,
+                  w: 130,
+                  h: 35,
+                  corner: 2,
+                  bg: '#fff',
+                  color: '#007FFF',
+                  size: 15
+              }
+          }
+      }, function(ret, err) {
+          if (ret.eventType == 'left') {
+              var dialogBox = api.require('dialogBox');
+              dialogBox.close({
+                  dialogName: 'raffle'
+              });
+              api.toast({
+                  msg: '反馈提交成功！我们会尽快修复',
+                  duration: 3000,
+                  location: 'middle'
+              });
+
+          }else if (ret.eventType == 'right'){
+            var dialogBox = api.require('dialogBox');
+            dialogBox.close({
+                dialogName: 'raffle'
+            });
+            api.clearCache(function() {
+
+            });
+
+            api.closeWin();
+          }
+      });
     }
 
-    function closeWd(){
-      api.closeWin();
-    }
 
 
 
@@ -590,6 +691,6 @@
 
 
 
-</script>
 
+</script>
 </html>

@@ -1,111 +1,171 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"/>
     <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
     <title>title</title>
     <link rel="stylesheet" type="text/css" href="../css/aui.css" />
     <link rel="stylesheet" type="text/css" href="../css/style.css"/>
     <link rel="stylesheet" type="text/css" href="../css/iconfont.css"/>
+		 
 </head>
 <body class="login-bg2">
   <header class="aui-bar aui-bar-nav" id="aui-header" style="background-color:rgba(0,0,0,0) !important">
       <a class="aui-btn aui-pull-left" tapmode onclick="closeWin()">
           <span class="aui-iconfont aui-icon-left"></span>
       </a>
-      <div id="title" class="aui-title">注册</div>
+      <div id="title" class="aui-title">注册</div>	
   </header>
 
-
+			
   <div class="myui-from">
     <ul class="myui-from-list">
       <li class="myui-from-list-item">
-        <input id="username" placeholder="请输入账号" class="myui-from-list-item-input">
+        <div class="myui-code">
+          <input id="username" type="tel"  minlength="11" maxlength="11" placeholder="输入手机号码" class="myui-from-code-input">
+          
+        </div>
       </li>
+      
       <li class="myui-from-list-item">
-        <input id="password" type="password" placeholder="设置密码" class="myui-from-list-item-input">
+        <input id="password" type="password" placeholder="输入密码" class="myui-from-list-item-input" onfocus="xsyzm()" />
       </li>
-       <li class="myui-from-list-item">
-        <input id="share" type="tel" minlength="6" maxlength="6" placeholder="邀请码(选填)" class="myui-from-list-item-input">
-      </li>
-      <li class="myui-from-list-item">
+	<div id="yzmx">
+		<li class="myui-from-code-inputx">
+				<input id="t1" type="text" name="u" placeholder="验证码" onblur="but()" />
+		</li>
+				<li class="myui-from-code-inputyzm">
+						<span id="discode" style="height:45px;font-size: 26px;" ></span>
+			</li>
+			<li class="myui-from-code-inputbt">
+			<input id="hqyzm" type="button" value="获取验证码" style="height: 45px;width: 100%;font-size: 11px;" onClick="createCode()">
+			</li>   
+	</div>	   
+         <li class="myui-from-list-item">
         <button id="btn2" type="button" name="button" class="myui-from-list-item-button" onclick="toReg()">立即注册</button>
       </li>
     </ul>
   </div>
+	
 </body>
 <script type="text/javascript" src="../script/api.js" ></script>
-<script type="text/javascript">
-    var api_url = localStorage.getItem('api_url');
-    var onoff = true;
-    var code_data = '';
-    var user = '';
-    var pass = '';
-    apiready = function () {
-      api.parseTapmode();
-      var header = $api.byId('aui-header');
-      $api.fixStatusBar(header);
-      var headerPos = $api.offset(header);
-      var body_h = $api.offset($api.dom('body')).h;
 
-    }
+<script language="javascript">
+	var code; //在全局 定义验证码
+	var hdyzm;
+	 /* windows.onload=function(){
+   var show = document.querySelector('#yzmx');
+			show.style.display='none';
+   } */
 
-
-
-
+   /* function xsyzm(){
+	 var show = document.querySelector('#yzmx');
+			show.style.display='block'; 
+			document.getElementById("btn2").disabled = 'true';
+			} */
+	function createCode()
+	{ //创建验证码函数
+	 code = "";
+	 var codeLength =4;//验证码的长度
+	 var selectChar = new Array(0,1,2,3,4,5,6,7,8,9,'a','b','c','d','e','f','g','h','i','j','k',
+	  'l','m','n','o','p','q','r','s','t','u','v','w','x','y','z');//所有候选组成验证码的字符，当然也可以用中文的
+	 for(var i=0;i<codeLength;i++)
+	 { 
+	 var charIndex =Math.floor(Math.random()*36);
+	 code +=selectChar[charIndex]; 
+	 }
+	// 设置验证码的显示样式，并显示
+	 
+	 document.getElementById("discode").style.background="#fffff"
+	 document.getElementById("discode").style.display='block';
+	 document.getElementById("discode").style.fontFamily="Fixedsys"; //设置字体
+	 document.getElementById("discode").style.letterSpacing="5px"; //字体间距
+	 document.getElementById("discode").style.color="#007AFF"; //字体颜色
+	 document.getElementById("discode").innerHTML=code; // 显示
+	 hqyzm.value="换一个";
+	}
+	function but()
+	{//验证验证码输入是否正确
+	 var val1=document.getElementById("t1").value;
+	 var val2=code;
+	 if(val1!=val2){
+	  alert("验证码错误!");
+	 document.getElementById('t1').value="";
+	 return;
+	  } 
+		if(val1==''){ 
+			return;
+		}
+		 hdyzm=1;
+	}
+	
+	
     //去注册
     function toReg(){
       var username = $api.val($api.byId('username'));
       var password = $api.val($api.byId('password'));
-      var share = $api.val($api.byId('share'));
+      // var share = $api.val($api.byId('share'));
+			var zcecs = localStorage.getItem('zucecs');
+			if (zcecs ==1){
+				api.alert({
+						title: '提醒',
+						msg: '您今天已经注册过了',
+				});
+				return;
+			}
+			
       if(username == ''){
         api.alert({
-            title: '警告！',
+            title: '你好!~',
             msg: '请输入登录账号',
         });
         return;
       }
+		 if (username.length != 11) {
+				api.alert({
+						title: '啊奥!~',
+						msg: '请输入11位手机号码',
+				});
+				return;
+			} 
+			 if(/^[0-9]+$/.test(username))
+			{  
+					}else{
+						alert('手机号码中有字母或其他符号！');
+						return;
+					} 	
       if(password == ''){
         api.alert({
-            title: '警告！',
+            title: '啊奥~!',
             msg: '请输入密码',
         });
         return;
       }
-
-      // if(share == ''){
-      //   api.alert({
-      //       title: '警告！',
-      //       msg: '请输入邀请码',
-      //   });
-      //   return;
-      // }
-      if(username.length < 6){
+      if(password.length < 6){
         api.alert({
-            title: '警告！',
+            title: '啊奥~!',
             msg: '请输入6位以上密码',
         });
         return;
       }
-      // if(yzcode != code_data){
-      //   api.alert({
-      //       title: '错误提示',
-      //       msg: '您输入的验证码不正确',
-      //   });
-      //   return;
-      // }
-      // if(localStorage.getItem('reg_name') == username){
-
-      // }else {
-      //   api.alert({
-      //       title: '错误提示',
-      //       msg: '手机号输入不一致',
-      //   });
-      //   return;
-      // }
-      user = $api.val($api.byId('username'));
-      pass = $api.val($api.byId('password'));
+			if (hdyzm!= 1) {
+				api.alert({
+						title: '啊奥!~',
+						msg: '请输入验证码',
+				});
+				return;
+			} 
+			
+			// if(share == ''){
+			//   api.alert({
+			//       title: '调皮~',
+			//       msg: '请输入邀请码',
+			//   });
+			//   return;
+			// }
+     /* user = $api.val($api.byId('username'));
+      pass = $api.val($api.byId('password')); */
       api.showProgress({
           title: '注册中...',
           text: '请稍等...',
@@ -135,6 +195,7 @@
                     title: '注册成功！',
                     msg: '当前身份：体验会员',
                 });
+								localStorage.setItem('zucecs', '1');
                 api.closeWin({
                     name: 'login'
                 });
@@ -162,16 +223,15 @@
                           localStorage.setItem('user_id',ret.msg['id']);
                           localStorage.setItem('user_name',username);
                           localStorage.setItem('password',password);
+													localStorage.setItem('user_nickname',ret.msg['nick_name']);
                           localStorage.setItem('user_time',ret.msg['time']);
                           localStorage.setItem('user_share',ret.msg['share']);
                           localStorage.setItem('user_advert',ret.msg['advert']);
                           localStorage.setItem('user_code',ret.msg['code']);
-                          localStorage.setItem('user_weichat',ret.msg['weichat']);
-                          localStorage.setItem('url',ret.msg['url']);
-                          localStorage.setItem('url1',ret.msg['url1']);
-                          localStorage.setItem('url2',ret.msg['url2']);
-                          localStorage.setItem('url3',ret.msg['url3']);
-                          localStorage.setItem('url4',ret.msg['url4']);
+                         localStorage.setItem('user_jinb',ret.msg['share']);
+                         localStorage.setItem('user_zfb',ret.msg['zfb']);
+                         localStorage.setItem('user_weixin',ret.msg['weichat']);
+                         localStorage.setItem('tud',ret.msg['tudi']);
                           api.sendEvent({
                             name: 'newLoingdata',
                             extra: {
@@ -221,77 +281,43 @@
     }
 
     //获取验证码
-    function getCode(){
-      var yzcode = $api.val($api.byId('yzcode'));
-      var btn1 = $api.byId('btn1');
-      var username = $api.val($api.byId('username'));
-      localStorage.setItem('reg_name',username);
-      if (!onoff) {
-        return;
-      }
-      onoff = false;
-
-      if(username == ''){
-        api.alert({
-            title: '警告！',
-            msg: '请输入手机号码',
-        });
-        onoff = true;
-        return;
-      }
-      if(username.length != 11){
-        api.alert({
-            title: '警告！',
-            msg: '请输入11位手机号码',
-        });
-        onoff = true;
-        return;
-      }
-      code_data = RndNum(6);
-      var content = escape('#code#='+code_data);
-      //alert(code_data);
-      api.ajax({
-          url: 'http://v.juhe.cn/sms/send?mobile='+username+'&tpl_id=89421&tpl_value='+content+'&key=d9f3a1f1e84da36d5614a44f4371393d',
-          method: 'get'
-      },function(ret, err){
-        // if (ret) {
-        //   alert( JSON.stringify( ret ) );
-        // }else {
-        //   alert( JSON.stringify( err ) );
-        // }
-
-              api.toast({
-                  msg: '发送成功',
-                  duration: 1000,
-                  location: 'middle'
-              });
-              var nuw = 60;
-              var timer = setInterval(function(){
-                nuw --;
-
-                if (nuw < 1) {
-                  btn1.innerHTML = '获取';
-                  clearInterval(timer);
-                  onoff = true;
-                }else {
-                  btn1.innerHTML = nuw+'s';
-                }
-
-
-              },1000)
-      });
-
-
-    }
+   
 
     //生成验证码
-    function RndNum(n){
+    /* function RndNum(n){
       var rnd="";
       for(var i=0;i<n;i++)
           rnd+=Math.floor(Math.random()*10);
       return rnd;
-    }
-
+    } */
+$('#mpanel4').slideVerify({
+		type : 2,		//类型
+		vOffset : 5,	//误差量，根据需求自行调整
+		vSpace : 5,	//间隔
+		imgName : ['1.jpg', '2.jpg'],
+		imgSize : {
+			width: '400px',
+			height: '200px',
+		},
+		blockSize : {
+			width: '40px',
+			height: '40px',
+		},
+		barSize : {
+			width : '400px',
+			height : '40px',
+		},
+		ready : function() {
+		},
+		success : function() {
+			alert('验证成功，添加你自己的代码！');
+			btn2.Enable = true;
+		},
+		error : function() {
+		        	alert('验证失败！');
+		}
+	});
+	
 
     function closeWin(){
         api.closeWin({

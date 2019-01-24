@@ -7,9 +7,8 @@
     <title></title>
     <link rel="stylesheet" type="text/css" href="../css/aui.css"/>
     <link rel="stylesheet" type="text/css" href="../css/style.css"/>
-    <link rel="stylesheet" type="text/css" href="../css/iconfont.css"/>
+		<link rel="stylesheet" href="../css/demo.css">
     <style type="text/css">
-     html,body{background-image: url('pic_url');background-size:100% 100%;  }
         .text-white {
             color: #ffffff !important;
         }
@@ -19,107 +18,184 @@
         .iconfont{
           font-size: 1.5rem
         }
-		#user_bg{
-  position:fixed;
-  top: 0;
-  left: 0;
-  width:100%;
-  height:100%;
-  min-width: 1000px;
-  z-index:-10;
-  zoom: 1;
-  background-color: #fff;
-  background-repeat: no-repeat;
-  background-size: cover;
-  -webkit-background-size: cover;
-  -o-background-size: cover;
-  background-position: center 0;
+				.yangs{
+					font-size:1rem;
+					color: #F5611A;
+				}
+.icon {
+   width: 1.4em; height: 1.4em;
+   vertical-align: -0.15em;
+   fill: currentColor;
+   overflow: hidden;
+	 margin-top: -0.1rem;
 }
+
+.black_overlay{
+         display: none; 
+         position: absolute;  
+         top: 0%;  
+         left: 0%;  
+         width: 100%;  
+         height: 100%;  
+         /* background-color: #000; */  
+         z-index:1001;  
+         -moz-opacity: 0.8;  
+         opacity:.80;  
+         filter: alpha(opacity=80);  
+    } 
+    .white_content {
+       display: none;  
+       position: absolute; 
+       top: 10%; 
+       left: 15%;             
+       z-index:1002; 
+       overflow: auto;
+       margin:0 auto;
+       line-height: 370px;
+       width: 300px;
+       height: 285px;
+       color:#FF4500;
+       background-image: url(../image/qdjinbi.png);
+       background-repeat: no-repeat; 
+       background-size: 100% 100%; 
+       -moz-background-size: 100% 100%;
+       text-align:center;
+			font-size: 22px;
+    }  
     </style>
 </head>
-<body>
+<body onload="getData()">
     <!-- 顶部 -->
-    <section class="myui-bg-info" id="user-info">
-        <div class="user-box">
-          <div class="user-box-1" tapmode onclick="toLogin()">
-            <img src="../image/user_img.png">
-          </div>
-          <div id="islogin" class="user-box-2" style="font-size:1rem;color:#ffffff;" onclick="toLogin()">
-              新版演示
-          </div>
-          <div id="time" class="user-box-2" style="font-size:0.7rem;color:#ffffff;" onclick="toLogin()">
-
-          </div>
-
-        </div>
+    <section  id="user-info" class="myui-bg-info">
+		<div class="user-boxx2" tapmode onclick="tojinbi()">
+			<span id="jinb" class="yangs" tapmode onclick="tojinbi()"></span><br/>
+			<font size="3" color="#00A7F5">我的金币</font>
+		</div>
+       
+		<div class="user-boxx3" tapmode onclick="totudi()">
+			<span id="tud" class="yangs" tapmode onclick="totudi()"></span><br/>
+			<font size="3" color="#00A7F5">我的徒弟</font>
+		</div>	
+			
+			<div  class="user-box" id="user-box">
+				<span id="min"></span>
+				<div class="user-box-1" tapmode onclick="toLogin()">
+					<img src="../image/user_img.png">
+				</div>
+				
+				<div id="islogin"  style="font-size:1rem;color:#8e726f;" onclick="toLogin()">
+				</div>
+				
+				<div id="time"  style="font-size:0.7rem;color:#ff5722;" onclick="toLogin()">
+				</div>
+			</div>
     </section>
-    <div class="br"></div>
+		
+   <div id="light_qq" class="white_content"> 
+   			
+   </div>
+   <div id="light_weixin" class="white_content">  
+   		
+   </div> 
+   <div id="fade" class="black_overlay"  onClick="closeWindow()">
+   </div> 
+	 
+	 <div id="hhh" class="csshhh">
+	 <div class="user-boxxhh2" >
+	 	<input id="qiandaon" type="image" src="../image/qiandao.png" width="40px" height="40px" tapmode onclick="qiandao()"><br/>
+	 	<font size="3" color="#00A7F5">每日签到</font>
+	 </div>
+	 
+	 <div class="user-boxxhh3" id="adddl" tapmode onclick="daili()">
+	 	<input type="image" src="../image/daili.png" width="40px" height="42px" onclick="daili()"><br/>
+	 	<font size="3" color="#00A7F5">加入代理</font>
+	 </div>	
+	 	
+		<div class="user-boxxhh3" id="lookdl" tapmode onclick="dailishow()">
+		<input type="image" src="../image/dailisy.png" width="40px" height="42px" onclick="dailishow()"><br/>
+		<font size="3" color="#00A7F5">代理收益</font>
+		</div>	
+		
+	 	<div  class="user-boxhh" id="user-box">
+	 		<input type="image" src="../image/renwu.png" width="40px" height="40px" onclick="renwu()"><br/>
+	 		<font size="3" color="#00A7F5">任务中心</font>
+	 	</div>
+		
+		<!-- 	////// -->
+		
+		<div class="user-boxxhh2"  >
+		<input id="caiwumx" type="image" src="../image/caiwu.png" width="40px" height="40px" tapmode onclick="caiwu()"><br/>
+		<font size="3" color="#00A7F5">收支明细</font>
+		</div>
+
+		<div class="user-boxxhh3" id="makemn" tapmode onclick="mkmoney()">
+		<input type="image" src="../image/zqian.png" width="40px" height="42px" ><br/>
+		<font size="3" color="#00A7F5">如何赚钱</font>
+		</div>	
+		
+		<div  class="user-boxhh" id="user-boxad" tapmode onclick="adhz()">
+			<input type="image" src="../image/adhz.png" width="40px" height="40px" ><br/>
+			<font size="3" color="#00A7F5">广告合作</font>
+		</div>
+		
+	</div>
+	
     <section class="aui-grid aui-margin-b-15">
         <div class="aui-row">
+            <div class="aui-col-xs-4" onclick="openWin('open_vip_win')">
+                
+                <div class="aui-grid-labelx">
+									<svg class="icon" aria-hidden="true">
+									<use xlink:href="#icon-huiyuanjulebu"></use>
+									</svg>&nbsp;&nbsp;充值VIP<span class="aui-grid-labelxx">〉</span>
+									</div>
+            </div>
+						<div class="aui-col-xs-4" onclick="openWin('qianbao_win')">
+								
+								<div class="aui-grid-labelx">
+									<svg class="icon" aria-hidden="true">
+									<use xlink:href="#icon-qianbao"></use>
+									</svg>&nbsp;&nbsp;我的钱包<span class="aui-grid-labelxx">〉</span></div>
+						</div>
+            <div class="aui-col-xs-4" onclick="openWin('jifen_win')">
+                
+                <div class="aui-grid-labelx"><svg class="icon" aria-hidden="true">
+									<use xlink:href="#icon--jinbi"></use>
+									</svg>&nbsp;&nbsp;金币兑换<span class="aui-grid-labelxx">〉</span></div>
+            </div>
+            <div class="aui-col-xs-4" onclick="openWin('share_win')">
+                
+                <div class="aui-grid-labelx"><svg class="icon" aria-hidden="true">
+									<use xlink:href="#icon-yaoqing"></use>
+									</svg>&nbsp;&nbsp;邀请好友<span class="aui-grid-labelxx">〉</span></div>
+            </div>
+						
+            <div class="aui-col-xs-4" onclick="openWin('back_pwd')">
+                
+                <div class="aui-grid-labelx"><svg class="icon" aria-hidden="true">
+									<use xlink:href="#icon-modify-password"></use>
+									</svg>&nbsp;&nbsp;修改密码<span class="aui-grid-labelxx">〉</span></div>
+            </div>
+						
+            <div class="aui-col-xs-4">
+            <div class="aui-grid-labelx"><svg class="icon" aria-hidden="true">
+									<use xlink:href="#icon-ccsaliyunkefu"></use>
+	</svg>&nbsp;&nbsp;<a href="mqqwpa://im/chat?chat_type=wpa&uin=342344418&version=1&src_type=web&web_src=oicqzone.com">联系客服</a><span class="aui-grid-labelxx">〉</span></a></div>
+            </div>
+						
+		           <!-- <a href="http://wpa.qq.com/msgrd?v=3&uin=8888888&site=在线客服&menu=yes">联系客服</a>
+           					<div class="aui-col-xs-4" onclick="openWin('qqun')">
+           					<div class="aui-grid-labelx"><svg class="icon" aria-hidden="true">
+           								<use xlink:href="#icon-ccsaliyunkefu"></use>
+           </svg>&nbsp;<a href="mqqapi://card/show_pslcard?src_type=internal&version=1&uin=7330071870&card_type=group&source=qrcode">加入QQ群</a><span class="aui-grid-labelxx">〉</span></div>
+           					</div> -->
 
-          <div class="aui-col-xs-4" tapmode onclick="openWin('open_vip_win')">
-              <div id="videox" >
-              <i class="aui-grid-label"><img src="../image/app/chongzhi.png" /></i>
-              <div class="aui-grid-label">会员充值</div>
-              </div>
-              </div>
-
-              <div class="aui-col-xs-4" tapmode onclick="openWin('share_win')">
-                  <div id="videox" >
-                  <i class="aui-grid-label"><img src="../image/app/tuiguang.png"/></i>
-                  <div class="aui-grid-label">赚取积分</div>
-                  </div>
-                  </div>
-
-              <div class="aui-col-xs-4" tapmode onclick="openWin('jifen_win')">
-                      <div id="videox" >
-                      <i class="aui-grid-label"><img src="../image/app/jifen.png"/></i>
-                      <div class="aui-grid-label">积分兑换</div>
-                      </div>
-                      </div>
-
-              <div class="aui-col-xs-4" tapmode onclick="toBanner('http://s.6ayun.com/login/login')">
-                      <div id="videox" >
-                      <i class="aui-grid-label"><img src="../image/app/daili.png"/></i>
-                      <div class="aui-grid-label">代理系统</div>
-                      </div>
-                      </div>
-
-              <div class="aui-col-xs-4" tapmode onclick="openWin('back_pwd')">
-                      <div id="videox" >
-                      <i class="aui-grid-label"><img src="../image/app/xiugaimima.png"/></i>
-                      <div class="aui-grid-label">修改密码</div>
-                      </div>
-                      </div>
-
-              <div class="aui-col-xs-4" tapmode onclick="openWin('shezhi_win')">
-                      <div id="videox" >
-                      <i class="aui-grid-label"><img src="../image/app/shezhi.png"/></i>
-                      <div class="aui-grid-label">其他设置</div>
-                      </div>
-                      </div>
-
-              <div class="aui-col-xs-4" tapmode onclick="checkUpdate()">
-                      <div id="videox" >
-                      <i class="aui-grid-label"><img src="../image/app/gengxin.png"/></i>
-                      <div class="aui-grid-label">检测更新</div>
-                      </div>
-                    </div>
-
-            <div class="aui-col-xs-4" tapmode onclick="cleaCache()">
-                          <div id="videox" >
-                          <i class="aui-grid-label"><img src="../image/app/qingchu.png"/></i>
-                          <div class="aui-grid-label">清除缓存</div>
-                          </div>
-                          </div>
-
-            <div class="aui-col-xs-4" tapmode onclick="window.open('./fengge.html','_self');">
-                    <div id="videox" >
-                    <i class="aui-grid-label"><img src="../image/app/qiehuan.png"/></i>
-                    <div class="aui-grid-label">切换风格</div>
-                    </div>
-                    </div>
-
+            <div class="aui-col-xs-4" onclick="openWin('shezhi_win')">
+                <div class="aui-grid-labelx"><svg class="icon" aria-hidden="true">
+									<use xlink:href="#icon-shezhi"></use>
+									</svg>&nbsp;&nbsp;设置<span class="aui-grid-labelxx">〉</span></div>
+            </div>
+        </div>
     </section>
     <div class="br">
 
@@ -129,100 +205,27 @@
     </div>
 </body>
 <script type="text/javascript" src="../script/api.js" ></script>
+<script src="../fonts/iconfont.js"></script>
+<script src="../js/hui.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript" src="../script/aui-toast.js" ></script> 
 <script type="text/javascript">
     var api_url = localStorage.getItem('api_url');
     apiready = function () {
       api.parseTapmode();
       var appVersion = api.appVersion;
       var vsion = $api.byId('vsion');
-      vsion.innerHTML = '新版演示 v'+appVersion+' <span style="color:#7bbfea">免责声明</span>';
+      vsion.innerHTML = '全网影吧 v'+appVersion+' <span style="color:#7bbfea">免责声明</span>';
       //监听重新获取客服联系方式广播
       api.addEventListener({
           name: 'newLoingdata'
       }, function(ret, err) {
         if (ret) {
-          getData();
-          location.reload();
+           getData();
+          // location.reload();
         }
       });
-
-      getData();
-
+       
     }
-
-
-    //联系客服按钮
-    function kefu(){
-      if (localStorage.getItem('user_id')<1) {
-        api.alert({
-            title: '请先登录',
-            msg: '知道了',
-        });
-      }else {
-        var dialogBox = api.require('dialogBox');
-        dialogBox.alert({
-            texts: {
-                content: localStorage.getItem('url')+localStorage.getItem('user_weichat'),
-                leftBtnTitle: '知道了',
-                rightBtnTitle: '复制'
-            },
-            styles: {
-                bg: '#fff',
-                w: 300,
-                content: {
-                    color: '#000',
-                    size: 14
-                },
-                left: {
-                    marginB: 7,
-                    marginL: 20,
-                    w: 130,
-                    h: 35,
-                    corner: 2,
-                    bg: '#ff7600',
-                    color: '#fff',
-                    size: 14
-                },
-                right: {
-                    marginB: 7,
-                    marginL: 10,
-                    w: 130,
-                    h: 35,
-                    corner: 2,
-                    bg: '#ff7600',
-                    color: '#fff',
-                    size: 14
-                }
-            }
-        }, function(ret) {
-            if (ret.eventType == 'left') {
-                var dialogBox = api.require('dialogBox');
-                dialogBox.close({
-                    dialogName: 'alert'
-                });
-            }else if (ret.eventType == 'right') {
-              var clipBoard = api.require('clipBoard');
-              clipBoard.set({
-                  value: localStorage.getItem('user_weichat')
-              }, function(ret, err) {
-                  if (ret) {
-                    api.toast({
-                        msg: '已复制号码到剪切板',
-                        duration: 2000
-                    });
-                    var dialogBox = api.require('dialogBox');
-                    dialogBox.close({
-                        dialogName: 'alert'
-                    });
-                  } else {
-
-                  }
-              });
-            }
-        });
-      }
-    }
-
 
     function openWin(name){
       if (localStorage.getItem('user_id')<1) {
@@ -246,37 +249,97 @@
             vScrollBarEnabled:false
         });
       }
-
     }
     //获取数据
     function getData(){
       var user_id = localStorage.getItem('user_id');
       var user_name = localStorage.getItem('user_name');
       var user_time = localStorage.getItem('user_time');
+			var nickname = localStorage.getItem('user_nickname');
+			var jinbz  =  localStorage.getItem('user_jinb');
+			var tudz = localStorage.getItem('tud');
+			var dailix = localStorage.getItem('daili');
+			var dailiy ='';
       var s1 = formatDateTime(user_time);
       var timestamp = Date.parse(new Date())/1000;
       var time = $api.byId('time');
       var islogin = $api.byId('islogin');
-      //alert(user_time);
+			var min = $api.byId('min');
+			var jinbxs = $api.byId('jinb');
+			var tudixs = $api.byId('tud');
+			if (dailix==1){
+				dailiy="代理 ";
+				hui('#lookdl').show();
+				hui('#adddl').hide();
+			}else{
+				dailiy='';
+				hui('#lookdl').hide();
+				hui('#adddl').show();
+			}
+			
       if (user_time>timestamp) {
-        time.innerHTML = '<i class="iconfont icon-huiyuan" style="font-size:0.7rem;color:#ff5722"></i> VIP '+s1+' 到期';
+        time.innerHTML = '<i class="iconfontx icon-huiyuan" style="font-size:0.7rem;color:#ff5722"></i> VIP '+s1+' 到期';
       }
       if (user_time<timestamp) {
-        time.innerHTML = '<i class="iconfont icon-huiyuan" style="font-size:0.7rem;color:#ff5722"></i> VIP已到期 请及时续费';
+        time.innerHTML = '<i class="iconfontx icon-huiyuan" style="font-size:0.7rem;color:#ff5722"></i> VIP已到期 请及时续费';
       }
       if(user_time == "-1") {
-        time.innerHTML = '<i class="iconfont icon-huiyuan" style="font-size:0.7rem;color:#ff5722"></i> 永久贵宾VIP';
+        time.innerHTML = '<i class="iconfontx icon-huiyuan" style="font-size:0.7rem;color:#ff5722"></i> 永久贵宾VIP';
       }
       if (localStorage.getItem('user_id')<1) {
-        time.innerHTML = '请先登陆';
-      }
-      if (localStorage.getItem('user_name')>1) {
-        islogin.innerHTML = '账号: '+user_name;
+        time.innerHTML = '全网影吧';
+      }else if (localStorage.getItem('user_id')>1 && localStorage.getItem('user_nickname')!==""){
+      			min.innerHTML = dailiy+nickname;
+						jinbxs.innerHTML = jinbz;
+						tudixs.innerHTML = tudz;
+						islogin.innerHTML = "";
+						
+      	}else{
+      	min.innerHTML = dailiy+'UID: '+user_id;
+      	jinbxs.innerHTML = jinbz;
+      	tudixs.innerHTML = tudz;
+				
       }
 
+      if (user_id>0) {
+        api.ajax({
+            url: api_url+'/login/login/sign.html',
+            method: 'get',
+            data: {
+                values: {
+                    uid: user_id
+                }
+            }
+        },function(ret, err){
+            if (ret) {
+      
+                shareid.innerHTML = ret.msg['jinbi']+'<small> 分</small>';
+            } else {
+                alert('网络错误');
+            }
+        });
+      
+        if (user_time>timestamp) {
+          invip.innerHTML = '<i class="iconfont icon-VIP" style="font-size:0.8rem;color:#fff940;"></i>VIP会员';
+          stime.innerHTML = time+'<small> 天</small>';
+        }else if (user_time == -1) {
+          invip.innerHTML = '<i class="iconfont icon-VIP" style="font-size:0.8rem;color:#fff940;"></i>永久VIP';
+          stime.innerHTML = '<small> 一万年</small>';
+        }else if (user_time<timestamp) {
+          stime.innerHTML = '<small> 已到期</small>';
+        }else if (time == 0) {
+          stime.innerHTML = '<small>体验卡</small>';
+        }
+      }else {
+        islogin.style.display = "none";
+        no_login.style.display = "block";
+        invip.style.display = "none";
+        otbtn.style.display = "none";
+        indata.style.display = "none";
+        api.hideProgress();
+      
+      }
     }
-
-
 
     function formatDateTime(timeStamp) {
         var date = new Date();
@@ -310,9 +373,183 @@
             delay: 300,
         });
       }
-
     }
+		function totudi(){
+			if (localStorage.getItem('user_id')>0) {
+					api.openWin({
+							name: 'tudi_win',
+							url: './tudi_win.html',
+							delay: 300,
+					});
+			}else {
+				api.openWin({
+						name: 'login',
+						url: './login.html',
+						delay: 300,
+				});
+			}
+		}
+  function tojinbi(){
+			if (localStorage.getItem('user_id')>0) {
+					api.openWin({
+							name: 'jifen_win',
+							url: './jifen_win.html',
+							delay: 300,
+					});
+			}else {
+				api.openWin({
+						name: 'login',
+						url: './login.html',
+						delay: 300,
+				});
+			}
+		}
+		
+function renwu(){
+			if (localStorage.getItem('user_id')>0) {
+					api.openWin({
+							name: 'shezi',
+							url: './shezhi_win.html',
+							delay: 300,
+					});
+			}else {
+				api.openWin({
+						name: 'login',
+						url: './login.html',
+						delay: 300,
+				});
+			}
+		}
 
+function daili(){
+			if (localStorage.getItem('user_id')>0) {
+					api.openWin({
+							name: 'daili_win',
+							url: './daili_win.html',
+							delay: 300,
+					});
+			}else {
+				api.openWin({
+						name: 'login',
+						url: './login.html',
+						delay: 300,
+				});
+			}
+		}
+		
+		function dailishow(){
+					if (localStorage.getItem('user_id')>0) {
+							api.openWin({
+									name: 'dailishow_win',
+									url: './dailishow_win.html',
+									delay: 300,
+							});
+					}else {
+						api.openWin({
+								name: 'login',
+								url: './login.html',
+								delay: 300,
+						});
+					}
+				}
+				
+		function caiwu(){
+					if (localStorage.getItem('user_id')>0) {
+							api.openWin({
+									name: 'caiwulog_win',
+									url: './caiwulog_win.html',
+									delay: 300,
+							});
+					}else {
+						api.openWin({
+								name: 'login',
+								url: './login.html',
+								delay: 300,
+						});
+					}
+				}
+				
+				function adhz(){
+							if (localStorage.getItem('user_id')>0) {
+									api.openWin({
+											name: 'adhz_win',
+											url: 'danye/adhz_win.html',
+											delay: 300,
+									});
+							}else {
+								api.openWin({
+										name: 'login',
+										url: './login.html',
+										delay: 300,
+								});
+							}
+						}
+					
+			function mkmoney(){
+						if (localStorage.getItem('user_id')>0) {
+								api.openWin({
+										name: 'makemn_win',
+										url: 'danye/makemn_win.html',
+										delay: 300,
+								});
+						}else {
+							api.openWin({
+									name: 'login',
+									url: './login.html',
+									delay: 300,
+							});
+						}
+					}		
+						
+		function qiandao(){ 
+			if (localStorage.getItem('user_id')>0) {
+				var qdfbxx = Math.floor(Math.random()*30+5);
+				light_qq.innerHTML="恭喜您获得"+qdfbxx+"金币";
+						 api.ajax({
+						 	url: 'http://s.6ayun.com/login/login/qiand.html',
+						 	method: 'get',
+						 	data: {
+						 			values: {
+						 					uid: localStorage.getItem('user_id'),
+						 				qdjbx: qdfbxx
+						 			}
+						 	}
+						 },function(ret, err){
+						 	if (ret) {
+						 		if (ret.code == 1) {
+									var qdfbxx = Math.floor(Math.random()*30+5);
+									light_qq.innerHTML="恭喜您获得"+qdfbxx+"金币";
+									var light_qqx = document.querySelector('#light_qq');
+									var fadex = document.querySelector('#fade');
+									var jinbdom = document.querySelector('#jinb');
+									var jinbsz = Number(jinbdom.innerText);
+						 			var qiandd = document.querySelector('#qiandaon');
+									    light_qqx.style.display="block";
+											fadex.style.display="block";
+						 			    qiandd.disabled="disabled";
+											jinbdom.innerHTML=jinbsz+qdfbxx;
+						 			    setTimeout("closeWindow()","3000");
+						 }else if (ret.code == 0) {
+						 			api.hideProgress();
+									alert('您今天已经签到过了！^-^');
+						 			}
+						 		}
+						 });
+			}else {
+				api.openWin({
+						name: 'login',
+						url: './login.html',
+						delay: 300,
+				});
+		   }
+		 }
+		
+	 function closeWindow(){
+		         document.getElementById('light_weixin').style.display='none';
+		        document.getElementById('light_qq').style.display='none';
+		         document.getElementById('fade').style.display='none';
+		    }
+		
     function toVip(){
       if (user_id>0) {
         api.openWin({
@@ -334,11 +571,6 @@
 
     //退出登录
     function exitLogin(){
-      api.sendEvent({
-        name: 'newLoingdata',
-        extra: {
-        }
-      });
       api.showProgress({
           title: '稍后...',
           text: '正在退出...',
@@ -347,155 +579,7 @@
       localStorage.setItem('user_id','');
       localStorage.setItem('user_name','');
       localStorage.setItem('user_time','');
-      api.toast({
-          msg: '请重新登陆'
-      });
-      api.openWin({
-      });
-
+      localStorage.clear();
     }
-
-      function openWin(name){
-            var delay = 0;
-            if(api.systemType != 'ios'){
-                delay = 300;
-            }
-            api.openWin({
-                name: ''+name+'',
-                url: ''+name+'.html',
-                bounces:false,
-                delay: delay,
-                slidBackEnabled:true,
-                vScrollBarEnabled:false
-            });
-        }
-
-
-    //清楚缓存
-    function cleaCache(){
-      api.clearCache(function() {
-          api.toast({
-              msg: '清除完成'
-          });
-          getCache();
-      });
-    }
-
-    //更新app  （在apicloud进行）
-
-    function checkUpdate() {
-  var mam = api.require('mam');
-  mam.checkUpdate(function(ret, err) {
-  if (ret) {
-    var result = ret.result;
-    if (result.update == true && result.closed == false) {
-        var str = '新版本号:' + result.version + ';\n更新提示:' + result.updateTip  //下载地址:' + ';发布时间:' + result.time; + result.source + '; 需要的可以加上去
-        api.confirm({
-            title : '有新的版本,是否下载并安装 ',
-            msg : str,
-            buttons : ['确定', '取消']
-        }, function(ret, err) {
-            if (ret.buttonIndex == 1) {
-                if (api.systemType == "android") {
-                    api.download({
-                        url : result.source,
-                        report : true
-                    }, function(ret, err) {
-                        if (ret && 0 == ret.state) {/* 下载进度 */
-                            api.toast({
-                                msg : "正在下载应用" + ret.percent + "%",
-                                duration : 2000
-                            });
-                        }
-                        if (ret && 1 == ret.state) {/* 下载完成 */
-                            var savePath = ret.savePath;
-                            api.installApp({
-                                appUri : savePath
-                            });
-                        }
-                    });
-                }
-                if (api.systemType == "ios") {
-                    api.installApp({
-                        appUri : result.source
-                    });
-                }
-            }
-        });
-    } else {
-        api.alert({
-            msg : "已是最新版，无需更新！"
-        });
-    }
-  } else {
-    api.alert({
-        msg : err.msg
-    });
-  }
-  });
-  }
-
 </script>
-
-<script type="text/javascript">
-
-
-  function imgUrl(img){
-    if (img=='img1') {
-      api.openWin({
-          name: 'h5',
-          url: './h5.html',
-          pageParam: {
-              url: localStorage.getItem('fxurl1')
-          }
-      });
-    }else {
-      api.openWin({
-          name: 'h5',
-          url: './h5.html',
-          pageParam: {
-              url: localStorage.getItem('fxurl2')
-          }
-      });
-    }
-
-  }
-
-
-  //访问轮播地址
-  function toBanner(url){
-
-    if (url == '') {
-
-    }else {
-      api.openWin({
-          name: 'h5',
-          url: './h5.html',
-          pageParam: {
-              url: url
-          }
-      });
-    }
-  }
-
-
-
-
-  //幻灯轮播图
-  function banNer(){
-    var slide = new auiSlide({
-        container:document.getElementById("aui-slide"),
-        // "width":300,
-        "height":150,
-        "speed":300,
-        "pageShow":true,
-        "autoPlay": 5000,
-        "pageStyle":'dot',
-        "loop":true,
-        'dotPosition':'center',
-    });
-  }
-
-</script>
-
 </html>

@@ -12,8 +12,19 @@
   font-style:normal;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+	margin-top: -0.7rem;
+	float: left;
+	margin-left: 0.3rem;
 }
-
+.iconfontx {
+  font-family:"iconfont" !important;
+  font-style:normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+	margin-top: 0rem;
+	float: left;
+	margin-left: 0.1rem;
+}
 .icon-zaixianfuwuxian:before { content: "\e624"; }
 
 .icon-wodeiconvip2:before { content: "\e631"; }
@@ -55,4 +66,7 @@
 .icon-shipinwenjian:before { content: "\e614"; }
 
 .icon-shezhi:before { content: "\e61d"; }
+
+.icon-yue:before { content: "\e69d"; }
+
 

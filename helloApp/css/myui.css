@@ -52,6 +52,7 @@ img {
 	outline: none
 }
 
+
 :not(input):not(select):not(textarea) {
 	-webkit-user-select: none;
 	-moz-user-select: none;
@@ -235,7 +236,7 @@ img {
 }
 
 .sp-content .rule {
-  padding-top: 0.8rem;
+  padding-top: 0.35rem;
 	font-size: .25rem;
 	width: 90%;
 	margin: auto;
@@ -270,7 +271,7 @@ img {
 
 .sp-content .rule ul li {
 	list-style-type: decimal;
-	color: #aaa;
+	color: #CD8162;
 	padding-bottom: .1rem
 }
 

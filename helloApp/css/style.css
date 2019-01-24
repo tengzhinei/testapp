@@ -66,18 +66,70 @@ html,body {height:100%; background-color:rgba(0,0,0,0);}
   background-repeat: no-repeat;
   background-size: 100% 100%;
   -moz-background-size: 100% 100%;
-  height: 8rem !important;
+  height: 7rem !important;
 }
 .aui-list-item-text2{
   font-size: 0.55rem !important;
 }
 .user-box{
-  padding-top: 1rem;
-
+  padding-top: 0.65rem;
+  
   text-align: center;
+	width: 40%;
+	margin: 0 auto;
 }
+.user-boxx2{
+  padding-top: 3.5rem;
+  text-align: center;
+	width: 30%;
+	float: left;
+	height: 6.5rem !important;
+}
+.user-boxx3{
+	padding-top: 3.5rem;
+  text-align: center;
+	width: 30%;
+	float: right;
+	height: 6.5rem !important;
+}
+
+.csshhh{
+	border-bottom: 4px solid #F0F0F0;
+	border-top: 5px solid #F0F0F0;
+	padding-bottom: 0.25rem;
+	background: #ffffff;
+}
+	
+	
+.user-boxhh{
+  padding-top: 0.4rem;
+  text-align: center;
+	width: 34%;
+	margin: 0 auto;
+	height: 4rem !important;
+	background: #ffffff;
+	
+}
+.user-boxxhh2{
+  padding-top: 0.4rem;
+  text-align: center;
+	width: 33%;
+	float: left;
+	height: 4rem !important;
+	background: #ffffff; 
+}
+.user-boxxhh3{
+	padding-top: 0.4rem;
+  text-align: center;
+	width: 33%;
+	float: right;
+	height: 4rem !important;
+	background: #ffffff;
+ 
+}
+
 .user-box-1{
-  padding-bottom: 0.5rem;
+  padding-bottom: 0.1rem;
   text-align: center;
 }
 .user-box-1 img{
@@ -111,19 +163,18 @@ html,body {height:100%; background-color:rgba(0,0,0,0);}
 
 }
 .myui-from-list-item-input{
-
-  background-color: rgba(224,22,155, 0.2) !important;
+  background-color: rgba(12, 12, 12, 0.55) !important;
   /*border:1px solid rgba(241, 241, 241, 0.6) !important;*/
-  border-radius: 0.4rem !important;
+  border-radius: 0.1rem !important;
   text-align: center;
-  color: #000 !important;
+  color: #fff !important;
   margin-bottom: 1rem !important;
 }
 .myui-from-list-item-button{
-  background-color: rgba(224,22,155, 0.8) !important;
-  border-radius: 0.4rem !important;
+  background-color: rgba(255, 193, 7, 0.95) !important;
+  border-radius: 0.1rem !important;
   text-align: center;
-  color: #000 !important;
+  color: #fff !important;
   height: 2rem;
   width: 100%;
   border: none !important;
@@ -142,8 +193,7 @@ html,body {height:100%; background-color:rgba(0,0,0,0);}
   border: 0;
 }
 .myui-from-code-input{
-  background-color: rgba(224,22,155, 0.2) !important;
-  width:80% !important;
+  width:100% !important;
   display:block;
   float:left;
   padding-left:34% !important;
@@ -152,17 +202,47 @@ html,body {height:100%; background-color:rgba(0,0,0,0);}
   border-left:1px solid rgba(241, 241, 241, 0.6) !important;
   border-top:1px solid rgba(241, 241, 241, 0.6) !important;
   border-bottom:1px solid rgba(241, 241, 241, 0.6) !important;
-  background-color: rgba(224,22,155, 0.4) !important;
-  color: #000 !important;
+  background-color: rgba(12, 12, 12, 0.55) !important;
+  color: #fff !important;
   margin-bottom: 1rem !important;
 }
+
+.myui-from-code-inputx{
+  width:50% !important;
+  display:block;
+  float:left;
+  padding-left:20% !important;
+  background-color: rgba(212, 212, 212, 1) !important;
+  color: #fff !important;
+  margin-bottom: 1rem !important;
+}
+.myui-from-code-inputyzm{
+  width:26% !important;
+  display:block;
+  float:left;
+	padding-left:0% !important;
+	margin-left: 2% !important;
+
+	text-align: center;
+  background-color: rgba(179, 229, 252, 1) !important;
+}
+
+.myui-from-code-inputbt{
+  width:20% !important;
+  display:block;
+  float:right;
+	padding-left:0% !important;
+	text-align: center;
+  background-color: rgba(254, 254, 254, 1) !important;
+}
+
 .myui-from-code-button{
   text-align: center;
   border-right:1px solid rgba(241, 241, 241, 0.6) !important;
   border-left:1px solid rgba(0,0,0,0) !important;
   border-top:1px solid rgba(241, 241, 241, 0.6) !important;
   border-bottom:1px solid rgba(241, 241, 241, 0.6) !important;
-  background-color: rgba(224,22,155, 1) !important;
+  background-color: rgba(12, 12, 12, 0.55) !important;
   border-radius: 0px 0.1rem 0.1rem 0px !important;
   text-align: center;
   color: #eaeaea !important;
@@ -174,15 +254,15 @@ html,body {height:100%; background-color:rgba(0,0,0,0);}
   width: 100%;
 }
 .to-login{
-  color: #000;
+  color: #5d5d5d;
   float:right;
-  margin-right:30%;
+  margin-right: 10%;
   margin-top: 1rem;
 }
 .to-login-l{
-  color: #000;
+  color: #5d5d5d;
   float:left;
-  margin-left: 30%;
+  margin-left: 10%;
   margin-top: 1rem;
 }
 .myui-bg-live{
@@ -279,39 +359,69 @@ html,body {height:100%; background-color:rgba(0,0,0,0);}
   height: 20%;
 }
 .open-vip-b{
-  height: 80%;
-  background: #fff;
+  height: 100%;
+  background: #ffffff;
 }
 .open-vip-b-box{
   width: 84%;
   height: 100%;
   margin: auto;
-}
-.open-vip-b-ka img{
-
-  width: 50%;
-  float: left;
-  padding: 2%;
-  margin: auto;
+	background: #FFFFFF;
 }
 .open-vip-b-ka{
   height: 12rem;
   line-height:12rem;
   margin: auto;
 }
+.open-vip-b-ka img{
+
+  width: 50%;
+	float: left;
+  padding: 2%;
+  margin: auto;
+}
+
+.open-vip-b-kax{
+  /* height: 12rem;
+  line-height:12rem; */
+  margin: auto;
+}
+.open-vip-b-kax img{
+  width: 65%;
+  padding: 2%;
+  margin: auto;
+	-webkit-touch-callout:default;
+}
+.open-vip-b-kaxx img{
+  width: 85%;
+  padding: 2%;
+  margin: auto;
+	-webkit-touch-callout:default;
+}
+
 .open-vip-b-text{
   text-align: center;
-  padding-top: 1rem;
-  font-size: 0.6rem;
+  padding-top: 0.5rem;
+  font-size: 0.7rem;
   color: #666;
 }
-.open-vip-b-kefu{
+.open-vip-b-kefux{
   padding-top: 5%;
+  text-align: center;
+  padding-left: 2%;
+  padding-right: 2%;
+  font-size: 1rem;
+  color: #666;
+	background:#ffffff;
+}
+.open-vip-b-kefu{
+  padding-top: 3%;
   text-align: center;
   padding-left: 2%;
   padding-right: 2%;
   font-size: 0.8rem;
   color: #666;
+	background:#ffffff;
 }
 .livebox{
   width: 100%;
@@ -360,11 +470,11 @@ html,body {height:100%; background-color:rgba(0,0,0,0);}
 
 .myui-jifen-box{
   text-align: center;
-    margin: 7%;
+    margin: 5%;
     width: 86%;
 }
 .myui-jifen-1{
-  height: 2rem;
+  height: 3rem;
   padding-top: 1rem;
 
 }
@@ -373,13 +483,13 @@ html,body {height:100%; background-color:rgba(0,0,0,0);}
 }
 
 .myui-jifen-bt{
-  height: 5rem;
-  padding-top:2.5rem;
+  height: 4rem;
+  padding-top:1.8rem;
 }
 .myui-jifen-2{
   color: #ff6666;
   padding-bottom:0.2rem;
-  padding-top: 4rem;
+  padding-top: 2rem;
 
 }
 .my-jien-btn{
@@ -466,7 +576,7 @@ html,body {height:100%; background-color:rgba(0,0,0,0);}
 }
 .index-b img{
   width: 100%;
-  height: auto;
+  height: 2.5rem;
 }
 .myui-label{
     display: block;

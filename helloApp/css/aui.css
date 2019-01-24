@@ -20,7 +20,7 @@ html,body {
 body {
 	line-height: 1.5;
 	font-size: 0.8rem;
-	color: #212121;
+	color: #121212;
 	background-color: #f5f5f5;
 	outline: 0;
 }
@@ -450,6 +450,7 @@ img.aui-img-round {
   	position: relative;
   	word-break: break-all;
   	-webkit-overflow-scrolling: touch;
+		
 }
 /*栅格类*/
 .aui-row {
@@ -492,9 +493,15 @@ img.aui-img-round {
 .aui-col-xs-5 {
 	width: 41.66666667%;
 }
+
 .aui-col-xs-4 {
-	width: 33.33333333%;
+	width: 100%;
+	text-align: left;
+	height: 2.2rem;
+	margin-bottom: 2px;
+  border: 1px solid #F5F5F5;
 }
+
 .aui-col-xs-3 {
 	width: 25%;
 }
@@ -508,6 +515,24 @@ img.aui-img-round {
 	width: 20%;
 }
 /*标签*/
+.zhif{
+	padding-top: 10px;
+	height: 2.5rem;
+	width: 100%;
+	background: #ffffff;
+}
+.zhifx{
+text-align:center;
+padding:2px; 
+margin: 2px auto;
+background:#FF7600;
+height: 1.8rem;
+width:85%;
+font-size: 0.95rem;
+color:#ffffff;
+border-radius:25px;
+-moz-border-radius:25px;
+}
 .aui-label {
 	display: inline-block;
 	padding: 0.2em 0.25em;
@@ -616,7 +641,7 @@ img.aui-img-round {
     border-radius: 0.5rem;
     position: absolute;
     top: 0.3rem;
-    right: 20%;
+    left: 9%;
     z-index: 99;
 }
 /*按钮样式*/
@@ -628,8 +653,8 @@ button, .aui-btn {
 	font-family: inherit;
 	text-decoration: none;
 	text-align: center;
-	margin: 0;
-		background: #f5611a;
+	margin: 0 auto;
+	background: #f5611a;
 	padding: 0 0.6rem;
 	height: 1.5rem;
 	line-height: 1.5rem;
@@ -689,10 +714,18 @@ button, .aui-btn {
 .aui-btn-block {
 	display: block;
 	width: 100%;
-	height: 2.5rem;
-	line-height: 2.55rem;
+	height: 5.0rem;
+	line-height: 2.0rem;
 	margin-bottom: 0;
 	font-size: 0.9rem;
+}
+.aui-btn-blockx {
+	display: block;
+	width: 40%;
+	height: 1.8rem;
+	line-height: 1.8rem;
+	margin-bottom: 0;
+	font-size: 0.8rem;
 }
 .aui-btn-block.aui-btn-sm {
 	font-size: 0.7rem;
@@ -749,7 +782,6 @@ input[type="url"],
 input[type="date"],
 input[type="datetime-local"],
 input[type="time"],
-input[type="number"],
 select,
 textarea {
     border: none;
@@ -760,10 +792,10 @@ textarea {
     padding: 0;
     margin: 0;
     width: 100%;
-    height: 2.2rem;
+    height: 2.0rem;
     line-height: normal;
     color: #424242;
-    font-size: 0.8rem;
+    font-size: 0.9rem;
     font-family: inherit;
     box-sizing: border-box;
     -webkit-user-select: text;
@@ -776,7 +808,7 @@ input[type="search"]::-webkit-search-cancel-button {
 }
 input::-webkit-input-placeholder { /* WebKit browsers */
 
-color: #eaeaea;
+color: #C0C0C0;
 
 }
 
@@ -906,6 +938,14 @@ color: #eaeaea;
     position: relative;
     max-width: 100%;
     color: #212121;
+		width: 70px;
+}
+.aui-list .aui-list-item-titlex {
+    font-size: 0.8rem;
+    position: relative;
+    max-width: 100%;
+    color: #212121;
+		width: 65px;
 }
 .aui-list .aui-list-item-right,
 .aui-list-item-title-row em {
@@ -1267,7 +1307,7 @@ color: #eaeaea;
 /*宫格布局*/
 .aui-grid {
 	width: 100%;
-	background-color: rgba(255, 255, 255, 0.2) !important;
+	background-color: #ffffff;
 	display: table;
 	table-layout: fixed;
 }
@@ -1288,6 +1328,7 @@ color: #eaeaea;
     height: 1.4rem;
     font-size: 1.4rem;
     line-height: 1.4rem;
+		
 }
 .aui-grid .aui-grid-label {
 	display: block;
@@ -1295,6 +1336,30 @@ color: #eaeaea;
     position: relative;
     margin-top: 0.25rem;
 }
+		
+		
+.aui-grid .aui-grid-labelx {
+	display: block;
+    font-size: 0.8rem;
+    position: relative;
+    margin-top: -0.20rem;
+		text-align: left;
+		margin-left: 0.5rem;
+		color: #606060;	
+}
+.aui-grid .aui-grid-labelxx {
+	display: block;
+    font-size: 1.1rem;
+    position: relative;
+    margin-top: -0.20rem;
+		/* text-align: right; */
+		/* margin-right: 0.4rem; */
+		color: #F0F0F0;
+		background: #fff;
+		width: 8%;	
+		float: right;
+}
+
 .aui-grid .aui-badge {
 	position: absolute;
     top: 0.5rem;
@@ -1453,12 +1518,13 @@ color: #eaeaea;
 	font-size: 0.9rem;
 	text-align: center;
 	display: table;
+	padding-top: 0.6rem;
 }
 .aui-bar-nav {
 	top: 0;
 	line-height: 2.25rem;
-	background-color: #6405da;
-	color: #FFF;
+	background-color: #fff;
+	color: #333;
 }
 .aui-title a {
 	color: inherit;
@@ -1466,7 +1532,7 @@ color: #eaeaea;
 .aui-bar-nav .aui-title {
 	min-height: 2.25rem;
 	position: absolute;
-	margin: 0;
+	margin-top: 0.0rem;
 	text-align: center;
 	white-space: nowrap;
 	right: 5rem;
@@ -1486,6 +1552,7 @@ color: #eaeaea;
 	color: #ffffff;
 	font-weight: 400;
 	line-height: 2.25rem;
+	
 }
 .aui-bar-nav .aui-pull-left {
 	padding: 0 0.2rem;
@@ -1542,8 +1609,9 @@ color: #eaeaea;
 	font-size: 0.9rem;
 	line-height: 1.25rem;
 	padding: 0;
-	margin: 0;
+	margin-top: 0rem;
 	color: #333;
+	
 }
 .aui-bar-light {
 	color: #03a9f4;
@@ -1612,6 +1680,45 @@ color: #eaeaea;
     z-index: 99;
 }
 /*按钮工具栏*/
+
+.auixj{
+	width: 60%;
+	margin: 0 auto;
+	
+}
+.auixj-quy{
+	display: table-cell;
+	position: relative;
+	
+	height: 2.0rem;
+	text-align: center;
+	vertical-align: middle;
+	border-radius: 0;
+	position: relative;
+	border-width: 1px;
+	border-style: solid;
+	border-color: #03a9f4;
+	border-left-width: 1px;
+}
+
+.auinbr{
+	text-align: center !important;
+	width: 100%;
+}
+
+.input[type="number"],
+textarea {
+    border: none;
+    background-color: transparent;
+    border-radius: 0;
+    box-shadow: none;
+    display: block;
+    padding: 0;
+    margin: 0;
+    height: 2.2rem;
+		}
+		
+		
 .aui-bar-btn {
 	position: relative;
     font-size: 0.7rem;
@@ -1942,19 +2049,20 @@ color: #eaeaea;
 }
 /*toast*/
 .aui-toast {
-	background: rgba(0, 0, 0, 0.7);
+	/* background: rgba(0, 0, 0, 0.7); */
 	text-align: center;
 	border-radius: 0.25rem;
 	color: #ffffff;
 	position: fixed;
 	z-index: 3;
 	top: 45%;
-	left: 50%;
+	left: 15%;
 	width: 7.5em;
 	min-height: 6em;
 	margin-left: -3.75em;
 	margin-top: -4rem;
 	display: none;
+	margin:0 auto;
 }
 .aui-toast .aui-iconfont {
 	margin-top: 0.2rem;

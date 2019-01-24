@@ -1,243 +1,235 @@
-<!DOCTYPE HTML>
+<!doctype html>
 <html>
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
-    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
-    <title>title</title>
-    <link rel="stylesheet" type="text/css" href="../css/aui.css" />
-    <link rel="stylesheet" type="text/css" href="../css/base.css">
-    <link rel="stylesheet" type="text/css" href="../css/style.css"/>
-    <link rel="stylesheet" type="text/css" href="../css/auislide.css" />
+<meta charset="utf-8">
+<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+<link rel="stylesheet" type="text/css" href="../css/auiz.css" />
+<link rel="stylesheet" type="text/css" href="../css/stylez.css"/>
+<link rel="stylesheet" href="../css/zhibo.css"> 
+<title>title</title>
+<link rel="stylesheet" href="../css/swiper.min.css">
+<script src="../script/swiper.min.js"></script>
+<style>
+		html,
+		body {
+				height: 100%;
+		}
+
+.swiper-container{
+	width: 100%;
+	height: 6.4rem;
+}
+
+.swiper-container img{
+	width: 100%;
+	height: 5.4rem;
+}
+
+
+</style>
+
 </head>
 <body>
-  <div id="aui-slide">
-    <div id="slidebox" class="aui-slide-wrap">
-      <div class="aui-slide-node bg-dark">
-          <img src="../image/New_mov.png" />
-      </div>
 
-      <div class="aui-slide-node bg-dark">
-          <img src="../image/TV.png" />
-      </div>
-    </div>
-    <div class="aui-slide-page-wrap"></div>
+<div class="swiper-container">
+  <div class="swiper-wrapper">
+    <div class="swiper-slide"><img class="zhiboImg" src="../image/zhiboluntu/zb1.jpg" ></div>
+    <div class="swiper-slide"><img class="zhiboImg" src="../image/zhiboluntu/zb2.jpg" ></div>
+    <div class="swiper-slide"><img class="zhiboImg" src="../image/zhiboluntu/zb3.png" ></div>
   </div>
-  <div class="wrap">
-    <!-- 游戏 -->
-    <div class="game-page">
-      <!-- 游戏列表 -->
-      <div class="game-list-wrap" id="gameList">
-        <ul class="clearfix" id="div_list">
-          <li>
-            <div class="game-a" onclick="tvList()">
-              <img src="../image/tvzb.png" alt="">
-              <p class="game-list-name">电视直播</p>
-            </div>
-          </li>
-        </ul>
-      </div>
-      <!-- 游戏列表 end-->
-
-    </div>
-    <!-- 游戏 end-->
-  </div>
-</body>
-<script type="text/x-dot-template" id="template">
-{{~ it : value : index }}
-    <li>
-      <div class="game-a" onclick="openWin('{{= value. id }}')">
-        <img src="{{= value. img }}" alt="">
-        <p class="game-list-name">{{= value. name }}</p>
-      </div>
-    </li>
-{{~}}
+</div>
+<script>
+var mySwiper = new Swiper('.swiper-container', {
+	autoplay: true,//可选选项，自动滑动
+})
 </script>
-<script type="text/javascript" src="../script/api.js" ></script>
-<script type="text/javascript" src="../script/doT.js"></script>
-<script type="text/javascript" src="../script/auipullrefresh.js"></script>
-<script type="text/javascript" src="../script/auislide.js"></script>
+<div class="list-title">
+<P align=center><FONT style="BACKGROUND-COLOR: #ffcc00" face=楷体_GB2312 color=#ff0033 size=4></FONT>电影、电视、直播、汇聚各类节目</P>
+<!--<span style="color:#585858;font-size: 0.7rem"><i class="iconfont icon-zuirehotchunse" style="color:#ff7600;font-size: 0.8rem"></i>聚合影区</span>-->
+	</div>
+
+
+
+
+
+
+<li>
+<div class="weui-grid js_grid" tapmode onclick="openVipurl('http://v8.xin-dianying.com/')">
+<center>
+<img class="zhiboImg" src="../image/zhibo/video.png" >
+</center>
+<p class="text">最新电影</p>
+</div>
+</li>
+
+<li>
+<div class="weui-grid js_grid" tapmode onclick="openVipurl('http://dy8.xin-dianying.com/')">
+<center>
+<img class="zhiboImg" src="../image/wnyq.png" >
+</center>
+<p class="text">万能影城</p>
+</div>
+</li>
+
+<li>
+<div class="weui-grid js_grid" tapmode onclick="openVipurl('http://www.woxiu.com/')">
+<center>
+<img class="zhiboImg" src="../image/zhibo/mnvideo.png" >
+</center>
+<p class="text">美女视频</p>
+</div>
+</li>
+
+<li>
+<div class="weui-grid js_grid" onclick="tvList()">
+<center>
+<img class="zhiboImg" src="../image/zhibo/tv.png" >
+</center>
+<p class="text">电视直播</p>
+</div>
+</li>
+
+<li>
+<div class="weui-grid js_grid" onclick="gameList()">
+<center>
+<img class="zhiboImg" src="../image/zhibo/game.png" >
+</center>
+<p class="text">游戏直播</p>
+</div>
+</li>
+
+<li>
+<div class="weui-grid js_grid" onclick="List()">
+<center>
+<img class="zhiboImg" src="../image/zhibo/daixu.png" >
+</center>
+<p class="text">待更新</p>
+</div>
+</li>
+
+</body>
+
+
+
+</body>
+
 <script type="text/javascript">
-var slide = new auiSlide({
-    container:document.getElementById("aui-slide"),
-    // "width":300,
-    "height":160,
-    "speed":350,
-    "pageShow":true,
-    "autoPlay": 5000,
-    "pageStyle":'dot',
-    "loop":true,
-    'dotPosition':'center',
-});
-  var api_url = localStorage.getItem('api_url');
-  var i = 1;
-  apiready = function(){
-    getList();
+function openVipurl(url){
+    var time = localStorage.getItem('user_time');
+    var user_id = localStorage.getItem('user_id');
+    var username = localStorage.getItem('user_name');
+    var timestamp = Date.parse(new Date())/1000;
+    if(user_id<1){
+      api.alert({
+          title: '温馨提示',
+          msg: '请先登陆后使用',
+      });
+      api.openWin({
+          name: 'login',
+          url: 'login.html',
+          delay: 300
+      });
+      return;
 
-
-
-  }
-
-  function getList(){
-    i = 1;
-    var div_list = $api.byId('div_list');
-    var template = $api.byId('template');
-    api.ajax({
-        url: 'http://s.6ayun.com/api/gamezhibo.php',
-        method: 'get',
-        data: {
-            values: {
-                lx: 'hqpt',
-                ys:1
-            }
-        }
-    },function(ret, err){
-        if (ret) {
-            //alert( JSON.stringify( ret ) );
-            var pagefn = doT.template(template.text);
-            div_list.innerHTML += pagefn(ret);
-            showData();
-        } else {
-            //alert( JSON.stringify( err ) );
-        }
-    });
-
-
-  }
-
-//打开最新电影窗口，需要会员权限
-    function vList(){
-    var delay = 0;
-    if(api.systemType != 'ios'){
-        delay = 300;
     }
-    api.openWin({
-        name: 'v_list_win',
-        url: 'v_list_win.html',
-        bounces:false,
-        delay: delay,
-        slidBackEnabled:true,
-        vScrollBarEnabled:false,
-    });
-    return;
 
-  }
+    if (time>timestamp) {
+     /* api.showProgress({
+          title: 'VIP登录中1...',
+          modal: false
+      }); */
+      setTimeout("playRadio();",1000);
+      var delay = 0;
+      if(api.systemType != 'ios'){
+          delay = 300;
+      }
+      api.openWin({
+          name: 'h5',
+          url: 'h5.html',
+          delay: 800,
+          pageParam:{url:url},
+          bgColor: 'rgba(0,0,0,0)'
+      });
 
-  if (time>timestamp) {
-
-    setTimeout("playRadio();",1000);
-    var delay = 0;
-    if(api.systemType != 'ios'){
-        delay = 300;
-    }
-    api.openWin({
-        name: 'v_list_win_win',
-        url: 'v_list_win_win.html',
-        delay: 800,
-        pageParam:{url:url},
-        bgColor: 'rgba(0,0,0,0)'
-    });
-
-  }else if (time == -1) {
-
-    setTimeout("playRadio();",2000);
-    var delay = 0;
-    if(api.systemType != 'ios'){
-        delay = 300;
-    }
-    api.openWin({
-        name: 'v_list_win',
-        url: 'v_list_win.html',
-        delay: 800,
-        pageParam:{url:url},
-        bgColor: '#000000'
-    });
+    }else if (time == -1) {
+      api.showProgress({
+          title: 'VIP登录中2...',
+          modal: false
+      });
+      setTimeout("playRadio();",2000);
+      var delay = 0;
+      if(api.systemType != 'ios'){
+          delay = 300;
+      }
+      api.openWin({
+          name: 'h5',
+          url: 'h5.html',
+          delay: 800,
+          pageParam:{url:url},
+          bgColor: '#000000'
+      });
 
 
-  }else if (time<timestamp){
-    var dialogBox = api.require('dialogBox');
-    dialogBox.alert({
-        texts: {
-            content: '您的VIP会员已过期，请及时续费！',
-            leftBtnTitle: '在想想',
-            rightBtnTitle: '去开通'
-        },
-        styles: {
-            bg: '#fff',
-            w: 300,
-            content: {
-                color: '#000',
-                size: 14
-            },
-            left: {
-                marginB: 7,
-                marginL: 20,
-                w: 130,
-                h: 35,
-                corner: 2,
-                bg: '#ff7600',
-                color: '#fff',
-                size: 14
-            },
-            right: {
-                marginB: 7,
-                marginL: 10,
-                w: 130,
-                h: 35,
-                corner: 2,
-                bg: '#ff7600',
-                color: '#fff',
-                size: 14
-            }
-        }
-    }, function(ret) {
-        if (ret.eventType == 'left') {
+    }else if (time<timestamp){
+      var dialogBox = api.require('dialogBox');
+      dialogBox.alert({
+          texts: {
+              content: '您的VIP会员已过期，请及时续费！',
+              leftBtnTitle: '让我想想',
+              rightBtnTitle: '去开通'
+          },
+          styles: {
+              bg: '#fff',
+              w: 300,
+              content: {
+                  color: '#000',
+                  size: 14
+              },
+              left: {
+                  marginB: 7,
+                  marginL: 20,
+                  w: 130,
+                  h: 35,
+                  corner: 2,
+                  bg: '#ff7600',
+                  color: '#fff',
+                  size: 14
+              },
+              right: {
+                  marginB: 7,
+                  marginL: 10,
+                  w: 130,
+                  h: 35,
+                  corner: 2,
+                  bg: '#ff7600',
+                  color: '#fff',
+                  size: 14
+              }
+          }
+      }, function(ret) {
+          if (ret.eventType == 'left') {
+              var dialogBox = api.require('dialogBox');
+              dialogBox.close({
+                  dialogName: 'alert'
+              });
+          }else if (ret.eventType == 'right') {
+            api.openWin({
+                name: 'open_vip_win',
+                url: 'open_vip_win.html',
+                delay: 300
+            });
             var dialogBox = api.require('dialogBox');
             dialogBox.close({
                 dialogName: 'alert'
             });
-        }else if (ret.eventType == 'right') {
-          api.openWin({
-              name: 'open_vip_win',
-              url: 'open_vip_win.html',
-              delay: 300
-          });
-          var dialogBox = api.require('dialogBox');
-          dialogBox.close({
-              dialogName: 'alert'
-          });
-        }
-    });
-  }
-
-
-
-
-
-  function showData(){
-    var div_list = $api.byId('div_list');
-    var template = $api.byId('template');
-    api.ajax({
-        url: 'http://s.6ayun.com/api/gamezhibo.php',
-        method: 'get',
-        data: {
-            values: {
-                lx: 'hqpt',
-                ys:2
-            }
-        }
-    },function(ret, err){
-        if (ret) {
-            //alert( JSON.stringify( ret ) );
-            var pagefn = doT.template(template.text);
-            div_list.innerHTML += pagefn(ret);
-        } else {
-            //alert( JSON.stringify( err ) );
-        }
-    });
+          }
+      });
+    }
 
   }
-  function tvList(){
+  
+function tvList(){
     var delay = 0;
     if(api.systemType != 'ios'){
         delay = 300;
@@ -252,20 +244,20 @@ var slide = new auiSlide({
     });
   }
 
-  function openWin(name){
-        var delay = 0;
-        if(api.systemType != 'ios'){
-            delay = 300;
-        }
-        api.openWin({
-            name: 'zhubo_list_win',
-            url: 'zhubo_list_win.html',
-            bounces:false,
-            delay: delay,
-            slidBackEnabled:true,
-            vScrollBarEnabled:false,
-            pageParam:{id:name}
-        });
+function gameList(){
+    var delay = 0;
+    if(api.systemType != 'ios'){
+        delay = 300;
     }
+    api.openWin({
+        name: 'game_list_win',
+        url: 'game_list_win.html',
+        bounces:false,
+        delay: delay,
+        slidBackEnabled:true,
+        vScrollBarEnabled:false,
+    });
+  }
+
 </script>
 </html>
